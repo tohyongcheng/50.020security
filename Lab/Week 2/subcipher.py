@@ -24,11 +24,10 @@ def subcipher(filein,fileout, filekey, mode):
 
     res = char
     try:
+      idx = plain.index(char)
       if mode == "e":
-        idx = plain.index(char)
         res = cipher[idx]
       elif mode == "d":
-        idx = cipher.index(char)
         res = plain[idx]
 
       if upper:
