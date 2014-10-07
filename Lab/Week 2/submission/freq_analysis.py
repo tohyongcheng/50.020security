@@ -9,7 +9,6 @@ def freq_analysis(initfile, filein,fileout):
   finit = open(initfile)
   fin  = open(filein)       # by default, read mode
   fout = open(fileout,'w')  # write mode
-  keyout = open("freq_keyfile.txt", 'w')
 
   init_string = finit.read()
   init_d = collections.defaultdict(int)
@@ -52,14 +51,13 @@ def freq_analysis(initfile, filein,fileout):
     if char.isalpha():
       d[char] += 1
 
-  plain = ""
-  subcipher = ""
   i = 0
   for w in sorted(d, key=d.get, reverse=True):
-    plain += w
-    subcipher += correct_d[i]
+    print w, d[w]
     sub[w] = correct_d[i]
     i += 1
+
+  print sub
 
   string = ""
   for char in c:
@@ -68,9 +66,6 @@ def freq_analysis(initfile, filein,fileout):
     else:
       string += char
   print string
-
-  keyfile = plain + "\n" + subcipher
-  keyout.write(keyfile)
 
 
   fout.write(string)
